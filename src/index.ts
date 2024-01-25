@@ -1,3 +1,5 @@
-console.log('Hello this is Brian!!!!!');
-console.log('Logging another line');
-console.log('Making another change');
+import { Canvas } from './Widget';
+
+
+const canvas = new Canvas(document.body);
+console.log(canvas);
