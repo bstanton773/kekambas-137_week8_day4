@@ -18,6 +18,7 @@ firstComponent.height = 3;
 firstComponent.width = 3;
 firstComponent.locationLeft = 7;
 firstComponent.shape.backgroundColor = 'red';
+firstComponent.content = "<h1>Hello World</h1>"
 
 canvas.addComponent(firstComponent);
 console.log(canvas);
@@ -26,6 +27,7 @@ console.log(canvas.components);
 const secondComponent = new Component();
 secondComponent.locationTop = 4
 secondComponent.locationLeft = 2;
+secondComponent.content = "<h3>TypeScript Rules!</h3>"
 secondComponent.shape = new RightLeaningContainer();
 
 canvas.addComponent(secondComponent);

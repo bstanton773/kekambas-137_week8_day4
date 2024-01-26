@@ -60,7 +60,9 @@ export default class Canvas{
         // Set the div styling
         Object.assign(div.style, newStyle);
         // Set Up the Shape for the component
-        Object.assign(div.style, component.shape.attributes)
+        Object.assign(div.style, component.shape.attributes);
+        // Set the innerHTML of the div to the component's content
+        div.innerHTML = component.content
         return div
     }
 

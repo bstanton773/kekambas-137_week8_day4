@@ -84,6 +84,8 @@ class Canvas {
         Object.assign(div.style, newStyle);
         // Set Up the Shape for the component
         Object.assign(div.style, component.shape.attributes);
+        // Set the innerHTML of the div to the component's content
+        div.innerHTML = component.content;
         return div;
     }
     placeComponent(component, div) {
@@ -1246,12 +1248,14 @@ firstComponent.height = 3;
 firstComponent.width = 3;
 firstComponent.locationLeft = 7;
 firstComponent.shape.backgroundColor = 'red';
+firstComponent.content = "<h1>Hello World</h1>";
 canvas.addComponent(firstComponent);
 console.log(canvas);
 console.log(canvas.components);
 const secondComponent = new Widget_1.Component();
 secondComponent.locationTop = 4;
 secondComponent.locationLeft = 2;
+secondComponent.content = "<h3>TypeScript Rules!</h3>";
 secondComponent.shape = new Widget_1.RightLeaningContainer();
 canvas.addComponent(secondComponent);
 const myCircleComponent = new Widget_1.Component();
