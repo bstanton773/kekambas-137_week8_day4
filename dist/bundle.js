@@ -24,8 +24,9 @@ exports.Component = Component_1.default;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 class Canvas {
-    constructor(parent) {
+    constructor(parent, _components = []) {
         this.parent = parent;
+        this._components = _components;
         this.parent.innerHTML = '';
         this.parent.id = 'canvas';
         const newStyle = {
@@ -38,6 +39,58 @@ class Canvas {
             aspectRatio: '1 / 1'
         };
         Object.assign(this.parent.style, newStyle);
+    }
+    get components() {
+        return this._components;
+    }
+    addComponent(component) {
+        this.components.push(component);
+        component.canvas = this;
+        this.render();
+    }
+    render() {
+        this.parent.innerHTML = '';
+        for (const component of this.components) {
+            // build the HTML for the component
+            this.buildComponent(component);
+        }
+    }
+    buildComponent(component) {
+        // Method to create the HTML Div Element
+        let div = this.initializeComponentDiv(component);
+        // Place the container on the grid
+        this.placeComponent(component, div);
+    }
+    initializeComponentDiv(component) {
+        let div = document.createElement('div');
+        div.id = component.id;
+        const newStyle = {
+            margin: 'auto',
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            alignContent: 'center',
+            padding: '3%',
+            aspectRatio: '1 / 1'
+        };
+        // Set the div styling
+        Object.assign(div.style, newStyle);
+        // Set Up the Shape for the component
+        Object.assign(div.style, component.shape.attributes);
+        return div;
+    }
+    placeComponent(component, div) {
+        const newStyle = {
+            gridColumnStart: component.locationLeft.toString(),
+            gridColumnEnd: "span " + component.width,
+            gridRowStart: component.locationTop.toString(),
+            gridRowEnd: "span " + component.height
+        };
+        Object.assign(div.style, newStyle);
+        this.parent.append(div);
     }
 }
 exports["default"] = Canvas;
@@ -1164,6 +1217,16 @@ const firstComponent = new Widget_1.Component();
 console.log(firstComponent);
 console.log(firstComponent.shape);
 console.log(firstComponent.shape.attributes);
+firstComponent.height = 5;
+firstComponent.locationLeft = 7;
+firstComponent.shape.backgroundColor = 'red';
+canvas.addComponent(firstComponent);
+console.log(canvas);
+console.log(canvas.components);
+const secondComponent = new Widget_1.Component();
+secondComponent.locationTop = 4;
+secondComponent.locationLeft = 2;
+canvas.addComponent(secondComponent);
 
 })();
 
