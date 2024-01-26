@@ -9,6 +9,33 @@ class LeftLeaningContainer extends Container{
 }
 
 
+class RightLeaningContainer extends Container{
+    constructor(){
+        super()
+        this.borderRadius = '25% 10%'
+    }
+}
+
+
+class CircleContainer extends Container{
+    constructor(){
+        super()
+        this.borderRadius = '50%'
+    }
+}
+
+
+class ThickContainer extends Container {
+    constructor(){
+        super();
+        this.borderWidth = '10px'
+    }
+}
+
+
 export {
-    LeftLeaningContainer
+    LeftLeaningContainer,
+    RightLeaningContainer,
+    CircleContainer,
+    ThickContainer,
 }

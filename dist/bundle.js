@@ -10,11 +10,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Component = exports.Canvas = void 0;
+exports.ThickContainer = exports.CircleContainer = exports.RightLeaningContainer = exports.Component = exports.Canvas = void 0;
 const Canvas_1 = __importDefault(__webpack_require__(2));
 exports.Canvas = Canvas_1.default;
 const Component_1 = __importDefault(__webpack_require__(3));
 exports.Component = Component_1.default;
+const containers_1 = __webpack_require__(20);
+Object.defineProperty(exports, "RightLeaningContainer", ({ enumerable: true, get: function () { return containers_1.RightLeaningContainer; } }));
+Object.defineProperty(exports, "CircleContainer", ({ enumerable: true, get: function () { return containers_1.CircleContainer; } }));
+Object.defineProperty(exports, "ThickContainer", ({ enumerable: true, get: function () { return containers_1.ThickContainer; } }));
 
 
 /***/ }),
@@ -1100,7 +1104,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.LeftLeaningContainer = void 0;
+exports.ThickContainer = exports.CircleContainer = exports.RightLeaningContainer = exports.LeftLeaningContainer = void 0;
 const Container_1 = __importDefault(__webpack_require__(21));
 class LeftLeaningContainer extends Container_1.default {
     constructor() {
@@ -1109,6 +1113,27 @@ class LeftLeaningContainer extends Container_1.default {
     }
 }
 exports.LeftLeaningContainer = LeftLeaningContainer;
+class RightLeaningContainer extends Container_1.default {
+    constructor() {
+        super();
+        this.borderRadius = '25% 10%';
+    }
+}
+exports.RightLeaningContainer = RightLeaningContainer;
+class CircleContainer extends Container_1.default {
+    constructor() {
+        super();
+        this.borderRadius = '50%';
+    }
+}
+exports.CircleContainer = CircleContainer;
+class ThickContainer extends Container_1.default {
+    constructor() {
+        super();
+        this.borderWidth = '10px';
+    }
+}
+exports.ThickContainer = ThickContainer;
 
 
 /***/ }),
@@ -1217,7 +1242,8 @@ const firstComponent = new Widget_1.Component();
 console.log(firstComponent);
 console.log(firstComponent.shape);
 console.log(firstComponent.shape.attributes);
-firstComponent.height = 5;
+firstComponent.height = 3;
+firstComponent.width = 3;
 firstComponent.locationLeft = 7;
 firstComponent.shape.backgroundColor = 'red';
 canvas.addComponent(firstComponent);
@@ -1226,7 +1252,19 @@ console.log(canvas.components);
 const secondComponent = new Widget_1.Component();
 secondComponent.locationTop = 4;
 secondComponent.locationLeft = 2;
+secondComponent.shape = new Widget_1.RightLeaningContainer();
 canvas.addComponent(secondComponent);
+const myCircleComponent = new Widget_1.Component();
+myCircleComponent.shape = new Widget_1.CircleContainer();
+myCircleComponent.shape.borderColor = 'blue';
+myCircleComponent.shape.backgroundColor = 'orange';
+canvas.addComponent(myCircleComponent);
+const anotherComponent = new Widget_1.Component();
+anotherComponent.locationTop = 8;
+anotherComponent.locationLeft = 8;
+anotherComponent.shape = new Widget_1.ThickContainer();
+anotherComponent.shape.borderStyle = 'dotted';
+canvas.addComponent(anotherComponent);
 
 })();
 
